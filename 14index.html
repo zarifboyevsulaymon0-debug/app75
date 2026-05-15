@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List Pro</title>
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#0f172a;
+    font-family:Arial;
+}
+
+.container{
+    width:420px;
+    background:#1e293b;
+    padding:25px;
+    border-radius:18px;
+    text-align:center;
+    color:white;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:15px;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    border:none;
+    border-radius:10px;
+    background:#22c55e;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.task{
+    background:#334155;
+    margin-top:10px;
+    padding:12px;
+    border-radius:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.delete{
+    background:#ef4444;
+    border:none;
+    color:white;
+    padding:6px 10px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.done{
+    text-decoration:line-through;
+    opacity:0.6;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>To-Do List Pro</h2>
+
+    <input type="text" id="taskInput" placeholder="Yangi vazifa yozing">
+
+    <button onclick="addTask()">Add Task</button>
+
+    <div id="list"></div>
+
+</div>
+
+<script>
+
+function addTask(){
+
+    let input =
+    document.getElementById("taskInput");
+
+    if(input.value.trim() === ""){
+        return;
+    }
+
+    let task =
+    document.createElement("div");
+
+    task.className = "task";
+
+    task.innerHTML = `
+        <span onclick="toggleDone(this)">${input.value}</span>
+        <button class="delete" onclick="deleteTask(this)">X</button>
+    `;
+
+    document.getElementById("list").appendChild(task);
+
+    input.value = "";
+}
+
+function deleteTask(btn){
+    btn.parentElement.remove();
+}
+
+function toggleDone(span){
+    span.classList.toggle("done");
+}
+
+</script>
+
+</body>
+</html>
